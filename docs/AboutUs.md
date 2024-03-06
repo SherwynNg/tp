@@ -20,12 +20,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops
 
-### Jane Doe
+### Ajay Arvind
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ajay.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/AjayArvind2207)]
+[[portfolio](team/ajay.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
