@@ -7,8 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -57,28 +55,13 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
-            return false;
-        }
-
-        AddCommand otherAddCommand = (AddCommand) other;
-        return toAdd.equals(otherAddCommand.toAdd);
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .add("toAdd", toAdd)
-                .toString();
+        return other == this // short circuit if same object
+                || (other instanceof AddCommand // instanceof handles nulls
+                && toAdd.equals(((AddCommand) other).toAdd));
     }
 }

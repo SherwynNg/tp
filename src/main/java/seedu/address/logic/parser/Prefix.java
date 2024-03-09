@@ -15,7 +15,6 @@ public class Prefix {
         return prefix;
     }
 
-    @Override
     public String toString() {
         return getPrefix();
     }
@@ -26,17 +25,15 @@ public class Prefix {
     }
 
     @Override
-    public boolean equals(Object other) {
-        if (other == this) {
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Prefix)) {
+            return false;
+        }
+        if (obj == this) {
             return true;
         }
 
-        // instanceof handles nulls
-        if (!(other instanceof Prefix)) {
-            return false;
-        }
-
-        Prefix otherPrefix = (Prefix) other;
-        return prefix.equals(otherPrefix.prefix);
+        Prefix otherPrefix = (Prefix) obj;
+        return otherPrefix.getPrefix().equals(getPrefix());
     }
 }

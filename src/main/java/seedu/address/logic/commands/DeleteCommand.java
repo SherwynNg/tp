@@ -4,9 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -42,28 +41,13 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof DeleteCommand)) {
-            return false;
-        }
-
-        DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return targetIndex.equals(otherDeleteCommand.targetIndex);
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .add("targetIndex", targetIndex)
-                .toString();
+        return other == this // short circuit if same object
+                || (other instanceof DeleteCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
     }
 }
